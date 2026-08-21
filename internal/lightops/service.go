@@ -89,7 +89,7 @@ func (s *Service) RegisterSchedule(ctx context.Context, schedule Schedule) (Sche
 	}
 	s.store.mu.Lock()
 	defer s.store.mu.Unlock()
-	schedule.Rows, schedule.Version = cloneRows(schedule.Rows), 1
+	schedule.Rows, schedule.Version = retainScheduleRows(schedule.Rows), 1
 	s.store.schedules[schedule.ID] = schedule
 	return cloneSchedule(schedule), nil
 }

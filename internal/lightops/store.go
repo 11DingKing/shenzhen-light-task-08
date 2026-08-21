@@ -147,3 +147,10 @@ func (s *Store) savePlanLocked(plan RectificationPlan) error {
 
 func (s *Store) FailNextEvent() { s.mu.Lock(); s.failEvent = true; s.mu.Unlock() }
 func (s *Store) FailNextPlan()  { s.mu.Lock(); s.failPlan = true; s.mu.Unlock() }
+
+func retainScheduleRows(rows map[string]bool) map[string]bool {
+	if rows == nil {
+		return nil
+	}
+	return rows
+}
